@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="shoppingListApp">
+<head>
+ <title>Shopping List</title>
+ <script 
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js">
+</script>
+ <style>
+ body {
+ font-family: sans-serif;
+ }
+ .container {
+ margin: 20px;
+ padding: 20px;
+ border: 10px solid #ccc;
+ }
+ .shopping-list {
+ list-style: none;
+ padding: 0;
+ margin: 0;
+ }
+ .shopping-list li {
+ margin-bottom: 10px;
+ padding: 5px;
+ border: 1px solid #ccc;
+ }
+ .shopping-list input {
+ width: 70%;
+ padding: 10px;
+ border: 1px solid #ccc;
+ }
+ .shopping-list button {
+ padding: 5px 10px;
+ border: 1px solid #ccc;
+ cursor: pointer;
+ }
+ #newitem{
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+ }
+ #add{
+    margin-left: 10px;
+    padding: 5px;
+    width: 60px;
+    font-size: 15px;
+ }
+ #remove{
+   margin-left: 80%;
+   margin-bottom: 2%;
+   font-size: 20px;
+   border-radius: 5px;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   cursor: pointer;
+ }
+ </style>
+</head>
+<body>
+ <div class="container" ng-controller="shoppingListCtrl">
+ <h1>Shopping List</h1>
+ <ul class="shopping-list">
+ <li ng-repeat="item in shoppingItems">
+ <input type="text" ng-model="item" placeholder="Enter item">
+ <button ng-click="removeItem(item)">Remove</button>
+ </li>
+ </ul>
+ <input type="text" id="newitem" ng-model="newItem" placeholder="Add new item" autofocus>
+ <button ng-click="addItem()" id="add">Add</button>
+ </div>
+ <script>
+ var app = angular.module("shoppingListApp",[]);
+ app.controller("shoppingListCtrl",function($scope){
+   $scope.shoppingItems = ["milk","bread"];
+   $scope.addItem = function(){
+      if ($scope.newItem){
+         $scope.shoppingItems.push($scope.newItem);
+         $scope.newItem = "";
+      }
+   };
+   $scope.removeItem = function(item){
+      var index = $scope.shoppingItems.indexOf(item);
+      if(index >= 0){
+         $scope.shoppingItems.splice(index,1);
+      }
+   };
+
+ });
+
+ </script>
+</body>
+</html>

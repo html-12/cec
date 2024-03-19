@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="dateApp">
+
+<head>
+    <title>AngularJS Date Display</title>
+    <style>
+        #dateDisplay {
+            width: 400px;
+            text-align: center;
+            border: 2px solid #000;
+            margin: auto;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js">
+    </script>
+</head>
+
+<body>
+    <div ng-controller="dateCtrl" id="dateDisplay">
+        <h2>Date Display</h2>
+        <p>Default Format: {{ currentDate | date }}</p>
+        <p>Custom Format: {{ currentDate | date:'fullDate' }}</p>
+        <p>Short Format: {{ currentDate | date:'short' }}</p>
+        <p>Custom Format (MM/dd/yyyy): {{ currentDate | date:'MM/dd/yyyy' }}</p>
+    </div>
+    <script>
+        var app = angular.module('dateApp', []);
+        app.controller('dateCtrl', function ($scope) {
+            $scope.currentDate = new Date();
+        });
+    </script>
+</body>
+
+</html>
